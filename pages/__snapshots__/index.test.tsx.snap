@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page should render correctly 1`] = `
+<div>
+  <Layout
+    title="X Choice"
+  >
+    <div
+      className="homeContainer"
+    >
+      <p
+        className="title"
+      >
+        A Survey Software built for you
+      </p>
+      <Button
+        block={false}
+        ghost={false}
+        htmlType="button"
+        loading={false}
+        shape="round"
+        size="large"
+        type="primary"
+      >
+        Create Survey Now
+      </Button>
+    </div>
+  </Layout>
+</div>
+`;

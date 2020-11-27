@@ -1,3 +1,4 @@
+import React from "react";
 import NextHead from "next/head";
 import GoogleFonts from "next-google-fonts";
 import { FunctionComponent } from "react";

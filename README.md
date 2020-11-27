@@ -1,30 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Introduction
 
-## Getting Started
+X-Choice is a survey platform which can allow users to publish surveys quickly.
+
+## Tech stack
+
+### Front-end
+
+- React.js
+- Next.js
+- TypeScript
+- Ant Design
+- Jest & Enzyme
+
+### Back-end
+
+- Java
+- Spring & SpringBoot
+- JUnit 5
+- Mockito
+- MySQL
+
+## Local development
+
+### Set up dev server
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Run unit tests
 
-## Learn More
+This package is using [Jest](https://jestjs.io/en/) and [Enzyme](https://enzymejs.github.io/enzyme/) for unit tests. It addes TypeScript support by using [ts-jest](https://kulshekhar.github.io/ts-jest/). For running all tests:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+yarn test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Appendix
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### References
 
-## Deploy on Vercel
+#### Jest + Enzyme
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Jest comes for free when using `create-react-app`, but with Next.js, we need to set up manually. It became extremely frastrated when want TypeScript support at the same time. Here are the resources I used to make the setup work:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- https://medium.com/@kjaer/setting-up-jest-and-enzyme-for-typescript-next-js-apps-ce383167643
+- https://jestjs.io/docs/en/configuration
+- https://jestjs.io/docs/en/webpack#handling-static-assets
+- https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675
+- https://basarat.gitbook.io/typescript/intro-1/jest

@@ -1,3 +1,4 @@
+import React from "react";
 import { FunctionComponent } from "react";
 import { Layout as AntLayout } from "antd";
 import Head from "../util/Head";
