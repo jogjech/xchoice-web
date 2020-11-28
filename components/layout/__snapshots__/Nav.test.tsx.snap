@@ -2,18 +2,38 @@
 
 exports[`Nav bar renders correctly 1`] = `
 <Header>
+  <Link
+    href="/"
+  >
+    <div
+      className="logo"
+    >
+      <a>
+        X Choice
+      </a>
+    </div>
+  </Link>
   <Menu
     mode="horizontal"
     theme="dark"
   >
     <MenuItem>
-      Item 1
+      <Link
+        href="/survey/create"
+      >
+        <a>
+          Create Survey
+        </a>
+      </Link>
     </MenuItem>
     <MenuItem>
-      Item 2
-    </MenuItem>
-    <MenuItem>
-      Item 3
+      <Link
+        href="/dashboard"
+      >
+        <a>
+          My Surveys
+        </a>
+      </Link>
     </MenuItem>
   </Menu>
 </Header>

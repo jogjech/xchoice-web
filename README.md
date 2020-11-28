@@ -53,7 +53,7 @@ For priority,
 - P1 - important, but the product can work without these. 
 - P2 - nice to have
 
-| Route | Description | Priority (P0, P1) |
+| Route | Description | Priority |
 | ------------- | ------------- | ----- |
 | `/`  | Home page  | P0 |
 | `/survey/create`  | Create survey page  | P0 |
