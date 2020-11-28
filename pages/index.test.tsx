@@ -13,13 +13,19 @@ describe("Home page", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("contains layout", () => {
+    const layout = wrapper.find("Layout");
+    expect(layout.exists()).toBeTruthy();
+    expect(layout.prop("title")).toBe("X Choice");
+  });
+
   it("contains title", () => {
     const title = wrapper.find(".title");
-    expect(title.text()).toContain("A Survey Software built for you");
+    expect(title.text()).toBe("A Survey Software built for you");
   });
 
   it("contains button to create survey", () => {
     const button = wrapper.find("Button");
-    expect(button.text()).toContain("Create Survey Now");
+    expect(button.text()).toBe("Create Survey Now");
   });
 });

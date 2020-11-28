@@ -1,0 +1,15 @@
+.spinContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.surveyTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.submitButton {
+  margin: 1rem 0;
+}

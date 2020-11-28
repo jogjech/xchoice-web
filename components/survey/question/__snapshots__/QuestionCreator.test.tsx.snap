@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question creator renders correctly 1`] = `
+<FormList
+  name="questions"
+>
+  <Component />
+</FormList>
+`;

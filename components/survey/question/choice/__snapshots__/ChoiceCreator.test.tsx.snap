@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Choice creator renders correctly 1`] = `
+<FormList
+  name={
+    Array [
+      2,
+      "choices",
+    ]
+  }
+>
+  <Component />
+</FormList>
+`;
