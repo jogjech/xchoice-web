@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from "react";
 import { Form, Input, Button, Result, Alert } from "antd";
 import QuestionCreator from "./question/QuestionCreator";
+import { postSurvey } from "../../apis/survey";
 import { useRouter } from "next/router";
 
 interface Props {}
@@ -17,10 +18,11 @@ const SurveyCreator: FunctionComponent<Props> = () => {
     setPosting(true);
     setPostError(undefined);
 
-    console.log("Received values", formData);
+    const result = await postSurvey(formData);
 
-    setPosted(true);
-    setSurveyId("1");
+    setPostError(result.error);
+    setPosted(!result.isError);
+    setSurveyId(result.surveyId);
     setPosting(false);
   };
 
