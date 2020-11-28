@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { Button } from "antd";
 import Layout from "../components/layout/Layout";
 import styles from "./index.module.css";
@@ -8,6 +8,7 @@ interface Props {}
 
 const Home: FunctionComponent<Props> = () => {
   const router = useRouter();
+  const [redirecting, setRedirecting] = useState(false);
 
   return (
     <div>
@@ -18,7 +19,9 @@ const Home: FunctionComponent<Props> = () => {
             type="primary"
             shape="round"
             size="large"
+            loading={redirecting}
             onClick={() => {
+              setRedirecting(true);
               router.push(`/survey/create`);
             }}
           >

@@ -29,6 +29,7 @@ const SurveyViewer: FunctionComponent<Props> = ({
   const [posting, setPosting] = useState(false);
   const [postError, setPostError] = useState(undefined);
   const [posted, setPosted] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -102,10 +103,12 @@ const SurveyViewer: FunctionComponent<Props> = ({
 
   const handleViewResponseButtonClick = () => {
     const toPath = `/survey/response/${responseSlug}`;
-    console.log(router);
+
     if (toPath === router.asPath) {
+      setRedirecting(true);
       router.reload();
     } else {
+      setRedirecting(true);
       router.push(`/survey/response/${responseSlug}`);
     }
   };
@@ -121,6 +124,7 @@ const SurveyViewer: FunctionComponent<Props> = ({
             <Button
               type="primary"
               key="console"
+              loading={redirecting}
               onClick={handleViewResponseButtonClick}
             >
               View my response

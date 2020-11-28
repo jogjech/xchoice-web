@@ -12,6 +12,7 @@ const SurveyCreator: FunctionComponent<Props> = () => {
   const [postError, setPostError] = useState(undefined);
   const [posted, setPosted] = useState(false);
   const [surveyId, setSurveyId] = useState("");
+  const [redirecting, setRedirecting] = useState(false);
   const router = useRouter();
 
   const handleFormFinish = async (formData: Object) => {
@@ -37,7 +38,11 @@ const SurveyCreator: FunctionComponent<Props> = () => {
             <Button
               type="primary"
               key="console"
-              onClick={() => router.push(`/survey/${surveyId}`)}
+              loading={redirecting}
+              onClick={() => {
+                setRedirecting(true);
+                router.push(`/survey/${surveyId}`);
+              }}
             >
               View my survey
             </Button>,
