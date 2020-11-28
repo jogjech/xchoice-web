@@ -40,6 +40,12 @@ This package is using [Jest](https://jestjs.io/en/) and [Enzyme](https://enzymej
 yarn test
 ```
 
+For all of the components, we have the test to compare the current version with the snapshot (which was generated from the initial run). In case some components are updated and snapshots are expected to change, run:
+
+```bash
+yarn test -u
+```
+
 ## Appendix
 
 ### References

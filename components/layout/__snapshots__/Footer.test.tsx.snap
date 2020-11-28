@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page footer renders correctly 1`] = `
+<Footer
+  id="siteFooter"
+>
+  Kevin Wang ©2020
+</Footer>
+`;

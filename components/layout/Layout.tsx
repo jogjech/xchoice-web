@@ -1,8 +1,9 @@
-import React from "react";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { Layout as AntLayout } from "antd";
 import Head from "../util/Head";
+import Nav from "./Nav";
 import Content from "./Content";
+import Footer from "./Footer";
 import styles from "./layout.module.css";
 
 interface Props {
@@ -12,7 +13,9 @@ interface Props {
 const Layout: FunctionComponent<Props> = ({ title, children }) => (
   <AntLayout id={styles.siteLayout}>
     <Head title={title}></Head>
+    <Nav></Nav>
     <Content>{children}</Content>
+    <Footer></Footer>
   </AntLayout>
 );
 

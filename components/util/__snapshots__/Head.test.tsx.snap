@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Head util renders correctly 1`] = `
+<Fragment>
+  <Component
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@300;400&display=swap"
+  />
+  <Head>
+    <meta
+      charSet="UTF-8"
+    />
+    <meta
+      content="width=device-width, initial-scale=1.0"
+      name="viewport"
+    />
+    <meta
+      content="ie=edge"
+      httpEquiv="x-ua-compatible"
+    />
+    <title>
+      Title
+    </title>
+  </Head>
+</Fragment>
+`;

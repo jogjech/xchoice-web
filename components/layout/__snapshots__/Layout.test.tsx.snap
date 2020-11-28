@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page layout renders correctly 1`] = `
+<Layout
+  id="siteLayout"
+>
+  <Head
+    title="Title"
+  />
+  <Nav />
+  <Content>
+    <div
+      id="#layout-children"
+    />
+  </Content>
+  <Footer />
+</Layout>
+`;
