@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View survey page renders correctly 1`] = `
+<Layout
+  title="View Survey"
+>
+  <Memo(BackTop) />
+  <SurveyViewer
+    surveyId="surveyId"
+  />
+</Layout>
+`;

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Survey viewer with slug renders correctly 1`] = `
+<Fragment>
+  <div
+    className="spinContainer"
+  >
+    <Spin
+      size="default"
+      spinning={true}
+      tip="Loading survey..."
+      wrapperClassName=""
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`Survey viewer with survey id renders correctly 1`] = `
+<Fragment>
+  <div
+    className="spinContainer"
+  >
+    <Spin
+      size="default"
+      spinning={true}
+      tip="Loading survey..."
+      wrapperClassName=""
+    />
+  </div>
+</Fragment>
+`;

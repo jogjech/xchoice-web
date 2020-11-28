@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question viewer renders correctly 1`] = `
+<Fragment>
+  <div
+    className="questionContainer"
+  >
+    <p
+      className="questionTitle"
+    >
+      Question title
+    </p>
+    <div>
+      <Memo([object Object])
+        onChange={[Function]}
+        value={1}
+      >
+        <Radio
+          className="radioStyle"
+          key="0"
+          type="radio"
+          value={0}
+        >
+          Choice A
+        </Radio>
+        <Radio
+          className="radioStyle"
+          key="1"
+          type="radio"
+          value={1}
+        >
+          Choice B
+        </Radio>
+      </Memo([object Object])>
+    </div>
+  </div>
+</Fragment>
+`;

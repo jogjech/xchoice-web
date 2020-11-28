@@ -1,0 +1,18 @@
+.questionContainer {
+  padding-top: 1rem;
+}
+
+.questionTitle {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.radioStyle {
+  display: block;
+  height: 30px;
+  lineheight: 30px;
+}
+
+.choiceErrorMessage {
+  color: red;
+}

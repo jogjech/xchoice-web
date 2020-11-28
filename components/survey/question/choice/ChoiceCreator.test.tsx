@@ -23,6 +23,6 @@ describe("Choice creator", () => {
 
   it("contains form list", () => {
     const formList = wrapper.find("FormList");
-    expect(formList.prop("name")).toEqual([2, "choices"]);
+    expect(formList.prop("name")).toEqual([questionField.name, "choices"]);
   });
 });

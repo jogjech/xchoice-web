@@ -18,6 +18,7 @@ exports[`Home page renders correctly 1`] = `
         ghost={false}
         htmlType="button"
         loading={false}
+        onClick={[Function]}
         shape="round"
         size="large"
         type="primary"
