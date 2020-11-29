@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Survey card with no survey metatdata renders correctly 1`] = `
+<Fragment>
+  <div>
+    <Card
+      bordered={true}
+      className="surveyCard"
+      loading={true}
+    >
+      <div />
+    </Card>
+  </div>
+</Fragment>
+`;
+
+exports[`Survey card with published survey metatdata renders correctly 1`] = `
+<Fragment>
+  <div>
+    <Card
+      bordered={true}
+      className="surveyCard"
+      headStyle={
+        Object {
+          "backgroundColor": "rgba(26, 119, 213, 0.6)",
+          "fontSize": "1.4rem",
+        }
+      }
+      hoverable={true}
+      onClick={[Function]}
+      title="Survey Title 1"
+    >
+      <div>
+        <withConfigConsumer(Statistic)
+          prefix={<ForwardRef(FileTextOutlined) />}
+          title="Responses"
+          value={13}
+        />
+        <Tag
+          color="green"
+        >
+          published
+        </Tag>
+      </div>
+    </Card>
+  </div>
+</Fragment>
+`;
+
+exports[`Survey card with unpublished survey metatdata renders correctly 1`] = `
+<Fragment>
+  <div>
+    <Card
+      bordered={true}
+      className="surveyCard"
+      headStyle={
+        Object {
+          "backgroundColor": "rgba(26, 119, 213, 0.6)",
+          "fontSize": "1.4rem",
+        }
+      }
+      hoverable={true}
+      onClick={[Function]}
+      title="Survey Title 2"
+    >
+      <div>
+        <withConfigConsumer(Statistic)
+          prefix={<ForwardRef(FileTextOutlined) />}
+          title="Responses"
+          value={15}
+        />
+        <Tag
+          color="orange"
+        >
+          unpublished
+        </Tag>
+      </div>
+    </Card>
+  </div>
+</Fragment>
+`;

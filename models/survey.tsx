@@ -16,3 +16,11 @@ export interface SurveyResponse {
   surveyId: string;
   selections: number[];
 }
+
+export interface SurveyMetadata {
+  surveyId: string;
+  responses: number;
+  published: boolean;
+  userId: string;
+  title: string;
+}

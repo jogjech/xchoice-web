@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Survey, SurveyResponse } from "../models/survey";
+import { Survey, SurveyResponse, SurveyMetadata } from "../models/survey";
 
 // For get requests, we can use SWR https://swr.vercel.app/getting-started
 
@@ -33,6 +33,14 @@ interface GetSurveyResponseResult {
   };
   isError: boolean;
   surveyResponse?: SurveyResponse;
+}
+
+interface FindSurveysResult {
+  error?: {
+    message: string;
+  };
+  isError: boolean;
+  surveyMetadataList?: SurveyMetadata[];
 }
 
 const postSurvey = async (survey: Object): Promise<PostSurveyResult> => {
@@ -156,7 +164,60 @@ const getSurvey = async (surveyId: string): Promise<GetSurveyResult> => {
 
 const deleteSurvey = async (surveyId: string) => {};
 
-const findSurveys = async (userId: string) => {};
+const findSurveys = async (userId: string): Promise<FindSurveysResult> => {
+  console.log(`Finding surveys for user ${userId}`);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  if (userId === "1") {
+    return {
+      isError: false,
+      surveyMetadataList: [
+        {
+          surveyId: "1",
+          responses: 0,
+          published: false,
+          userId: userId,
+          title: "Personal survey",
+        },
+        {
+          surveyId: "14",
+          responses: 15052,
+          published: true,
+          userId: userId,
+          title: "Work experience survey",
+        },
+        {
+          surveyId: "12",
+          responses: 0,
+          published: false,
+          userId: userId,
+          title: "Personal survey",
+        },
+        {
+          surveyId: "15",
+          responses: 15052,
+          published: true,
+          userId: userId,
+          title: "Work experience survey",
+        },
+        {
+          surveyId: "17",
+          responses: 0,
+          published: false,
+          userId: userId,
+          title: "Personal survey",
+        },
+      ],
+    };
+  } else {
+    return {
+      isError: true,
+      error: {
+        message: "Cannot find surveys for this user",
+      },
+    };
+  }
+};
 
 export {
   postSurvey,

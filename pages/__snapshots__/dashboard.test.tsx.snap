@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard page renders correctly 1`] = `
+<div>
+  <Layout
+    title="My Surveys"
+  >
+    <div>
+      <p
+        className="title"
+      >
+        My Surveys
+      </p>
+    </div>
+    <div>
+      <SurveyCard
+        surveyMetadata={null}
+      />
+    </div>
+  </Layout>
+</div>
+`;
