@@ -13,11 +13,13 @@ import styles from "./SurveyViewer.module.css";
 interface Props {
   surveyId?: string;
   slug?: string;
+  preview?: boolean;
 }
 
 const SurveyViewer: FunctionComponent<Props> = ({
   surveyId: inputSurveyId,
   slug: inputSlug,
+  preview,
 }) => {
   // TODO: missing the handle of getSurvey and getSurveyResponse errors
   const [surveyId, setSurveyId] = useState<string>(undefined);
@@ -137,7 +139,9 @@ const SurveyViewer: FunctionComponent<Props> = ({
         </div>
       ) : (
         <div>
-          <p className={styles.surveyTitle}>{survey.surveyTitle}</p>
+          {!preview && (
+            <p className={styles.surveyTitle}>{survey.surveyTitle}</p>
+          )}
           {survey.questions.map((question, index) => (
             <QuestionViewer
               question={question}
@@ -147,14 +151,16 @@ const SurveyViewer: FunctionComponent<Props> = ({
               submitWithNoSelection={validated && selections[index] == null}
             ></QuestionViewer>
           ))}
-          <Button
-            className={styles.submitButton}
-            type="primary"
-            onClick={handleSubmit}
-            loading={posting}
-          >
-            Submit
-          </Button>
+          {!preview && (
+            <Button
+              className={styles.submitButton}
+              type="primary"
+              onClick={handleSubmit}
+              loading={posting}
+            >
+              Submit
+            </Button>
+          )}
           {postError && (
             <Alert
               message="Failed to post response. Please try again."

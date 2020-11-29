@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question report renders correctly 1`] = `
+<Fragment>
+  <div>
+    <p
+      className="questionTitle"
+    >
+      Question title
+    </p>
+  </div>
+  <div
+    className="choices"
+  >
+    <div
+      key="0"
+    >
+      <span>
+        Choice 1
+      </span>
+      <Progress
+        percent={25}
+        showInfo={true}
+        size="default"
+        strokeLinecap="round"
+        trailColor={null}
+        type="line"
+      />
+    </div>
+    <div
+      key="1"
+    >
+      <span>
+        Choice 2
+      </span>
+      <Progress
+        percent={75}
+        showInfo={true}
+        size="default"
+        strokeLinecap="round"
+        trailColor={null}
+        type="line"
+      />
+    </div>
+  </div>
+</Fragment>
+`;

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Manage survey page renders correctly 1`] = `
+<Fragment>
+  <Layout
+    title="Manage Survey"
+  >
+    <div />
+  </Layout>
+</Fragment>
+`;

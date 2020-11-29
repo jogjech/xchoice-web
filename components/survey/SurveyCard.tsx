@@ -26,7 +26,7 @@ const SurveyCard: FunctionComponent<Props> = ({ surveyMetadata }) => {
               backgroundColor: "rgba(26, 119, 213, 0.6)",
             }}
             onClick={() => {
-              router.push(`/survey/${surveyMetadata.surveyId}`);
+              router.push(`/dashboard/survey/${surveyMetadata.surveyId}`);
             }}
           >
             <div>

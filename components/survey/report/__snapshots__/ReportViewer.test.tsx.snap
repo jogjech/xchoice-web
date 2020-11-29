@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Report viewer renders correctly 1`] = `
+<Fragment>
+  <div>
+    loading...
+  </div>
+</Fragment>
+`;

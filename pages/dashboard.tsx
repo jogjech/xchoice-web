@@ -20,7 +20,7 @@ const Dashboard: FunctionComponent<Props> = () => {
   const userId = "1"; // TODO: Update the logic to read current user id instead of hardcoding it
 
   useEffect(() => {
-    const fetchSurvey = async () => {
+    const fetchSurveys = async () => {
       const result = await findSurveys(userId);
 
       if (result.isError) {
@@ -30,7 +30,7 @@ const Dashboard: FunctionComponent<Props> = () => {
       }
       setLoading(false);
     };
-    fetchSurvey();
+    fetchSurveys();
   }, []);
 
   return (

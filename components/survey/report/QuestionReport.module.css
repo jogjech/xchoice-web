@@ -1,0 +1,9 @@
+.questionTitle {
+  font-size: 1.3rem;
+  margin-bottom: 0;
+  padding-top: 1rem;
+}
+
+.choices {
+  padding-top: 0.3rem;
+}

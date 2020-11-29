@@ -1,5 +1,6 @@
 export interface Choice {
   text: string;
+  selections?: number;
 }
 
 export interface Question {
@@ -10,6 +11,7 @@ export interface Question {
 export interface Survey {
   surveyTitle: string;
   questions: Question[];
+  published?: boolean;
 }
 
 export interface SurveyResponse {
@@ -23,4 +25,12 @@ export interface SurveyMetadata {
   published: boolean;
   userId: string;
   title: string;
+}
+
+export interface SurveyReport {
+  surveyId: string;
+  responses: number;
+  surveyTitle: string;
+  questions: Question[];
+  published?: boolean;
 }
