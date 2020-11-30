@@ -16,6 +16,19 @@ jest.mock("next/router", () => ({
   },
 }));
 
+jest.mock("@auth0/auth0-react", () => ({
+  useAuth0: () => {
+    return {
+      isAuthenticated: true,
+      user: {
+        nickname: "Kevin Wang",
+      },
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+    };
+  },
+}));
+
 describe("Home page", () => {
   let wrapper: ShallowWrapper;
 
@@ -35,7 +48,7 @@ describe("Home page", () => {
 
   it("contains title", () => {
     const title = wrapper.find(".title");
-    expect(title.text()).toBe("A Survey Software built for you");
+    expect(title.text()).toBe("Welcome back, Kevin Wang!");
   });
 
   it("contains button to create survey", () => {

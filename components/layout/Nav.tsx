@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Button } from "antd";
 import Link from "next/link";
+import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Nav.module.css";
 
 const { Header } = Layout;
@@ -8,6 +9,8 @@ const { Header } = Layout;
 interface Props {}
 
 const Nav: FunctionComponent<Props> = () => {
+  const { loginWithRedirect, logout, isAuthenticated, isLoading } = useAuth0();
+
   return (
     <Header>
       <Link href="/">
@@ -26,6 +29,25 @@ const Nav: FunctionComponent<Props> = () => {
             <a>My Surveys</a>
           </Link>
         </Menu.Item>
+        {!isLoading && (
+          <Menu.Item style={{ float: "right" }}>
+            {isAuthenticated ? (
+              <Button
+                className={styles.loginButton}
+                onClick={() => logout({ returnTo: window.location.origin })}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                className={styles.loginButton}
+                onClick={() => loginWithRedirect()}
+              >
+                Login / Sign-up
+              </Button>
+            )}
+          </Menu.Item>
+        )}
       </Menu>
     </Header>
   );

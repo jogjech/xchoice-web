@@ -35,6 +35,24 @@ exports[`Nav bar renders correctly 1`] = `
         </a>
       </Link>
     </MenuItem>
+    <MenuItem
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <Button
+        block={false}
+        className="loginButton"
+        ghost={false}
+        htmlType="button"
+        loading={false}
+        onClick={[Function]}
+      >
+        Logout
+      </Button>
+    </MenuItem>
   </Menu>
 </Header>
 `;

@@ -11,7 +11,7 @@ exports[`Home page renders correctly 1`] = `
       <p
         className="title"
       >
-        A Survey Software built for you
+        Welcome back, Kevin Wang!
       </p>
       <Button
         block={false}
