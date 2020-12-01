@@ -6,7 +6,7 @@ import { BackTop } from "antd";
 interface Props {}
 
 const CreateSurveyPage: FunctionComponent<Props> = () => (
-  <Layout title="Create Survey">
+  <Layout title="Create Survey" requiredAuth>
     <BackTop></BackTop>
     <SurveyCreator></SurveyCreator>
   </Layout>

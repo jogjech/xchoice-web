@@ -2,6 +2,7 @@
 
 exports[`Survey page renders correctly 1`] = `
 <Layout
+  requiredAuth={true}
   title="Create Survey"
 >
   <Memo(BackTop) />

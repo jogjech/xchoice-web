@@ -3,6 +3,7 @@
 exports[`Dashboard page renders correctly 1`] = `
 <div>
   <Layout
+    requiredAuth={true}
     title="My Surveys"
   >
     <div>

@@ -8,13 +8,18 @@ import styles from "./Layout.module.css";
 
 interface Props {
   title: string;
+  requiredAuth?: boolean;
 }
 
-const Layout: FunctionComponent<Props> = ({ title, children }) => (
+const Layout: FunctionComponent<Props> = ({
+  title,
+  requiredAuth,
+  children,
+}) => (
   <AntLayout id={styles.siteLayout}>
     <Head title={title}></Head>
     <Nav></Nav>
-    <Content>{children}</Content>
+    <Content requiredAuth={requiredAuth || false}>{children}</Content>
     <Footer></Footer>
   </AntLayout>
 );

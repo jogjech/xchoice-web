@@ -38,7 +38,7 @@ const ManageSurveyPage: FunctionComponent<Props> = () => {
 
   return (
     <>
-      <Layout title="Manage Survey">
+      <Layout title="Manage Survey" requiredAuth>
         {loading ? (
           <div></div>
         ) : !!errorMessage ? (

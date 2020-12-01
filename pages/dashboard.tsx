@@ -33,41 +33,52 @@ const Dashboard: FunctionComponent<Props> = () => {
     fetchSurveys();
   }, []);
 
+  const renderContent = () => {
+    if (loading) {
+      return (
+        <div>
+          <SurveyCard surveyMetadata={null}></SurveyCard>
+        </div>
+      );
+    }
+
+    if (errorMessage) {
+      return (
+        <Alert
+          message="Failed to load surveys. Please refresh to try again."
+          type="error"
+        ></Alert>
+      );
+    }
+    return (
+      <div>
+        <Row gutter={16}>
+          {surveyMetatdataList.map((surveyMetatdata) => (
+            <Col span={8} key={surveyMetatdata.surveyId}>
+              <SurveyCard surveyMetadata={surveyMetatdata}></SurveyCard>
+            </Col>
+          ))}
+          <Col span={8} key="createNew">
+            <Link href="/survey/create">
+              <Button type="dashed" className={styles.createNewCard}>
+                <div>
+                  <PlusSquareOutlined></PlusSquareOutlined> Create New
+                </div>
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+      </div>
+    );
+  };
+
   return (
     <div>
-      <Layout title="My Surveys">
+      <Layout title="My Surveys" requiredAuth>
         <div>
           <p className="title">My Surveys</p>
         </div>
-        {loading ? (
-          <div>
-            <SurveyCard surveyMetadata={null}></SurveyCard>
-          </div>
-        ) : errorMessage ? (
-          <Alert
-            message="Failed to load surveys. Please refresh to try again."
-            type="error"
-          ></Alert>
-        ) : (
-          <div>
-            <Row gutter={16}>
-              {surveyMetatdataList.map((surveyMetatdata) => (
-                <Col span={8} key={surveyMetatdata.surveyId}>
-                  <SurveyCard surveyMetadata={surveyMetatdata}></SurveyCard>
-                </Col>
-              ))}
-              <Col span={8} key="createNew">
-                <Link href="/survey/create">
-                  <Button type="dashed" className={styles.createNewCard}>
-                    <div>
-                      <PlusSquareOutlined></PlusSquareOutlined> Create New
-                    </div>
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
-          </div>
-        )}
+        {renderContent()}
       </Layout>
     </div>
   );

@@ -8,7 +8,9 @@ exports[`Page layout renders correctly 1`] = `
     title="Title"
   />
   <Nav />
-  <Content>
+  <Content
+    requiredAuth={false}
+  >
     <div
       id="#layout-children"
     />

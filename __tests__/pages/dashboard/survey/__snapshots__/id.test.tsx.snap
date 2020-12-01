@@ -3,6 +3,7 @@
 exports[`Manage survey page renders correctly 1`] = `
 <Fragment>
   <Layout
+    requiredAuth={true}
     title="Manage Survey"
   >
     <div />
