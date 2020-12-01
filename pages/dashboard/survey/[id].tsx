@@ -6,6 +6,7 @@ import { getSurvey } from "../../../apis/survey";
 import SurveyViewer from "../../../components/survey/SurveyViewer";
 import ReportViewer from "../../../components/survey/report/ReportViewer";
 import { useRouter } from "next/router";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 const { TabPane } = Tabs;
 
@@ -38,7 +39,7 @@ const ManageSurveyPage: FunctionComponent<Props> = () => {
 
   return (
     <>
-      <Layout title="Manage Survey" requiredAuth>
+      <Layout title="Manage Survey">
         {loading ? (
           <div></div>
         ) : !!errorMessage ? (
@@ -92,4 +93,4 @@ const ManageSurveyPage: FunctionComponent<Props> = () => {
   );
 };
 
-export default ManageSurveyPage;
+export default withAuthenticationRequired(ManageSurveyPage);

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Col, Row, Button, Alert } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { SurveyMetadata } from "../models/survey";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 import styles from "./dashboard.module.css";
 
 interface Props {}
@@ -74,7 +75,7 @@ const Dashboard: FunctionComponent<Props> = () => {
 
   return (
     <div>
-      <Layout title="My Surveys" requiredAuth>
+      <Layout title="My Surveys">
         <div>
           <p className="title">My Surveys</p>
         </div>
@@ -84,4 +85,4 @@ const Dashboard: FunctionComponent<Props> = () => {
   );
 };
 
-export default Dashboard;
+export default withAuthenticationRequired(Dashboard);
