@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
-import ViewSurveyPage from "./[id]";
+import ManageSurveyPage from "../../../../pages/dashboard/survey/[id]";
 
 const surveyId = "surveyId";
 
@@ -14,11 +14,11 @@ jest.mock("next/router", () => ({
   },
 }));
 
-describe("View survey page", () => {
+describe("Manage survey page", () => {
   let wrapper: ShallowWrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<ViewSurveyPage></ViewSurveyPage>);
+    wrapper = shallow(<ManageSurveyPage></ManageSurveyPage>);
   });
 
   it("renders correctly", () => {
@@ -28,12 +28,6 @@ describe("View survey page", () => {
   it("contains layout", () => {
     const layout = wrapper.find("Layout");
     expect(layout.exists()).toBeTruthy();
-    expect(layout.prop("title")).toBe("View Survey");
-  });
-
-  it("contains survey viewer", () => {
-    const surveyViewer = wrapper.find("SurveyViewer");
-    expect(surveyViewer.exists()).toBeTruthy();
-    expect(surveyViewer.prop("surveyId")).toBe(surveyId);
+    expect(layout.prop("title")).toBe("Manage Survey");
   });
 });

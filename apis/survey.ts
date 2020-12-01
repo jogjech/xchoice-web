@@ -58,19 +58,26 @@ interface FindSurveysResult {
 
 const postSurvey = async (survey: Object): Promise<PostSurveyResult> => {
   console.log("Posting survey", survey);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  console.log(process.env.NEXT_PUBLIC_X_CHOICE_API);
 
-  return {
-    isError: false,
-    surveyId: "1",
-  };
+  // const response = await axios.post(
+  //   `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys`,
+  //   {}
+  // );
+
+  // console.log(response);
+
   // return {
-  //   isError: true,
-  //   error: {
-  //     message: "Unknown",
-  //   },
+  //   isError: false,
   //   surveyId: "1",
   // };
+  return {
+    isError: true,
+    error: {
+      message: "Unknown",
+    },
+    surveyId: "1",
+  };
 };
 
 const postSurveyResponse = async (

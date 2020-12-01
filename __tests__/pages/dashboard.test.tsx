@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
-import Dashboard from "./dashboard";
+import Dashboard from "../../pages/dashboard";
 
 describe("Dashboard page", () => {
   let wrapper: ShallowWrapper;

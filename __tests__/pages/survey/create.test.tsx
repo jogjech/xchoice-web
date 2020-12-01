@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
-import CreatePage from "./create";
+import CreatePage from "../../../pages/survey/create";
 
 describe("Survey page", () => {
   let wrapper: ShallowWrapper;
