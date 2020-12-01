@@ -4,7 +4,7 @@ import Head from "../util/Head";
 import Nav from "./Nav";
 import Content from "./Content";
 import Footer from "./Footer";
-import styles from "./layout.module.css";
+import styles from "./Layout.module.css";
 
 interface Props {
   title: string;
