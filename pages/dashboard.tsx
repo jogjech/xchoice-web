@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Col, Row, Button, Alert } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { SurveyMetadata } from "../models/survey";
-import styles from "./dashboard.module.css";
+import styles from "./Dashboard.module.css";
 
 interface Props {}
 

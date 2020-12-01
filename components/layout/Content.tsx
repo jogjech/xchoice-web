@@ -1,7 +1,7 @@
 import React from "react";
 import { FunctionComponent } from "react";
 import { Layout } from "antd";
-import styles from "./content.module.css";
+import styles from "./Content.module.css";
 
 interface Props {}
 

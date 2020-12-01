@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { Layout } from "antd";
-import styles from "./footer.module.css";
+import styles from "./Footer.module.css";
 
 interface Props {}
 
