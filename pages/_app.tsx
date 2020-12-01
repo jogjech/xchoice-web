@@ -9,7 +9,7 @@ const App = ({ Component, pageProps }: AppProps) => (
   <Auth0Provider
     domain="dev-26etjqcm.us.auth0.com"
     clientId="wpWqk205G7MPEyjlMGr0LC2NZH5WHaHt"
-    redirectUri="http://localhost:3000"
+    redirectUri={process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL}
   >
     <Component {...pageProps} />
   </Auth0Provider>
