@@ -15,7 +15,16 @@ const SurveyCreator: FunctionComponent<Props> = () => {
   const [redirecting, setRedirecting] = useState(false);
   const router = useRouter();
 
-  const handleFormFinish = async (formData: Object) => {
+  const handleFormFinish = async (formData: {
+    surveyTitle: string;
+    questions: [
+      {
+        questionTitle: string;
+        choices: [{ text: string }];
+      }
+    ];
+  }) => {
+    console.log(formData);
     setPosting(true);
     setPostError(undefined);
 

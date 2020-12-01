@@ -56,46 +56,69 @@ interface FindSurveysResult {
   surveyMetadataList?: SurveyMetadata[];
 }
 
-const postSurvey = async (survey: Object): Promise<PostSurveyResult> => {
-  console.log("Posting survey", survey);
-  console.log(process.env.NEXT_PUBLIC_X_CHOICE_API);
+const postSurvey = async (survey: Survey): Promise<PostSurveyResult> => {
+  console.log("Posting survey");
 
-  // const response = await axios.post(
-  //   `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys`,
-  //   {}
-  // );
-
-  // console.log(response);
-
-  // return {
-  //   isError: false,
-  //   surveyId: "1",
-  // };
-  return {
-    isError: true,
-    error: {
-      message: "Unknown",
-    },
-    surveyId: "1",
+  const request = {
+    publisherId: 33,
+    title: survey.surveyTitle,
+    questions: survey.questions.map((question) => {
+      return {
+        title: question.questionTitle,
+        choices: question.choices.map((choice) => {
+          return {
+            text: choice.text,
+          };
+        }),
+      };
+    }),
   };
+
+  console.log(request);
+
+  try {
+    const { data } = await axios.post(
+      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys`,
+      request
+    );
+
+    return {
+      isError: false,
+      surveyId: data.id,
+    };
+  } catch (error) {
+    return {
+      isError: true,
+      error: {
+        message: error.response.data.message,
+      },
+      surveyId: "1",
+    };
+  }
 };
 
 const postSurveyResponse = async (
   surveyResponse: SurveyResponse
 ): Promise<PostSurveyResponseResult> => {
   console.log("Posting survey response", surveyResponse);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  if (surveyResponse.surveyId === "1") {
+  try {
+    const { data } = await axios.post(
+      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/${surveyResponse.surveyId}/responses`,
+      surveyResponse.selections
+    );
+
+    console.log(data);
+
     return {
       isError: false,
-      slug: "fasd07fhfak",
+      slug: data,
     };
-  } else {
+  } catch (error) {
     return {
       isError: true,
       error: {
-        message: "Unknown",
+        message: error.response.data.message,
       },
     };
   }
@@ -127,57 +150,36 @@ const getSurveyResponse = async (
 
 const getSurvey = async (surveyId: string): Promise<GetSurveyResult> => {
   console.log("Getting survey", surveyId);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  if (surveyId === "1") {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/${surveyId}`
+    );
+
+    console.log(data);
+
     return {
       isError: false,
       survey: {
         published: true,
-        surveyTitle: "Personal survey",
-        questions: [
-          {
-            questionTitle: "Your age",
-            choices: [
-              {
-                text: "<18",
-              },
-              {
-                text: "18-30",
-              },
-              {
-                text: "31-60",
-              },
-              {
-                text: ">60",
-              },
-            ],
-          },
-          {
-            questionTitle: "Your job family",
-            choices: [
-              {
-                text: "Engineering",
-              },
-              {
-                text: "Finance",
-              },
-              {
-                text: "Sales",
-              },
-              {
-                text: "Others",
-              },
-            ],
-          },
-        ],
+        surveyTitle: data.title,
+        questions: data.questions.map((question) => {
+          return {
+            questionTitle: question.title,
+            choices: question.choices.map((choice) => {
+              return {
+                text: choice.text,
+              };
+            }),
+          };
+        }),
       },
     };
-  } else {
+  } catch (error) {
     return {
       isError: true,
       error: {
-        message: "Cannot find survey",
+        message: error.response.data.message,
       },
     };
   }
@@ -187,67 +189,39 @@ const getSurveyReport = async (
   surveyId: string
 ): Promise<GetSurveyReportResult> => {
   console.log(`Getting survey report for survey ${surveyId}`);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  if (surveyId === "1") {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/${surveyId}`
+    );
+
+    console.log(data);
+
     return {
       isError: false,
       surveyReport: {
         published: true,
         surveyId: surveyId,
-        responses: 11,
-        surveyTitle: "Personal survey",
-        questions: [
-          {
-            questionTitle: "Your age",
-            choices: [
-              {
-                text: "<18",
-                selections: 3,
-              },
-              {
-                text: "18-30",
-                selections: 3,
-              },
-              {
-                text: "31-60",
-                selections: 4,
-              },
-              {
-                text: ">60",
-                selections: 1,
-              },
-            ],
-          },
-          {
-            questionTitle: "Your job family",
-            choices: [
-              {
-                text: "Engineering",
-                selections: 5,
-              },
-              {
-                text: "Finance",
-                selections: 4,
-              },
-              {
-                text: "Sales",
-                selections: 1,
-              },
-              {
-                text: "Others",
-                selections: 1,
-              },
-            ],
-          },
-        ],
+        responses: data.totalResponses,
+        surveyTitle: data.title,
+        questions: data.questions.map((question) => {
+          return {
+            questionTitle: question.title,
+            choices: question.choices.map((choice) => {
+              return {
+                text: choice.text,
+                selections: choice.responses.length,
+              };
+            }),
+          };
+        }),
       },
     };
-  } else {
+  } catch (error) {
     return {
       isError: true,
       error: {
-        message: "Cannot load report for this survey",
+        message: error.response.data.message,
       },
     };
   }
@@ -257,50 +231,30 @@ const deleteSurvey = async (surveyId: string) => {};
 
 const findSurveys = async (userId: string): Promise<FindSurveysResult> => {
   console.log(`Finding surveys for user ${userId}`);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  if (userId === "1") {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys`,
+      {
+        params: { userId: userId },
+      }
+    );
+
+    console.log(data);
+
     return {
       isError: false,
-      surveyMetadataList: [
-        {
-          surveyId: "1",
-          responses: 0,
-          published: false,
+      surveyMetadataList: data.map((item) => {
+        return {
+          surveyId: item.surveyId,
+          responses: item.responses,
+          published: item.published,
           userId: userId,
-          title: "Personal survey",
-        },
-        {
-          surveyId: "14",
-          responses: 15052,
-          published: true,
-          userId: userId,
-          title: "Work experience survey",
-        },
-        {
-          surveyId: "12",
-          responses: 0,
-          published: false,
-          userId: userId,
-          title: "Personal survey",
-        },
-        {
-          surveyId: "15",
-          responses: 15052,
-          published: true,
-          userId: userId,
-          title: "Work experience survey",
-        },
-        {
-          surveyId: "17",
-          responses: 0,
-          published: false,
-          userId: userId,
-          title: "Personal survey",
-        },
-      ],
+          title: item.title,
+        };
+      }),
     };
-  } else {
+  } catch (error) {
     return {
       isError: true,
       error: {

@@ -17,7 +17,7 @@ const Dashboard: FunctionComponent<Props> = () => {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>(undefined);
 
-  const userId = "1"; // TODO: Update the logic to read current user id instead of hardcoding it
+  const userId = "33"; // TODO: Update the logic to read current user id instead of hardcoding it
 
   useEffect(() => {
     const fetchSurveys = async () => {
