@@ -128,21 +128,28 @@ const getSurveyResponse = async (
   slug: string
 ): Promise<GetSurveyResponseResult> => {
   console.log("Getting survey response", slug);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  try {
+    const {
+      data,
+    } = await axios.get(
+      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/responses`,
+      { params: { slug: slug } }
+    );
 
-  if (slug === "fasd07fhfak") {
+    console.log(data);
+
     return {
       isError: false,
       surveyResponse: {
-        surveyId: "1",
-        selections: [1, 3],
+        surveyId: data.surveyId,
+        selections: data.selections,
       },
     };
-  } else {
+  } catch (error) {
     return {
       isError: true,
       error: {
-        message: "Unknown",
+        message: error.response.data.message,
       },
     };
   }
