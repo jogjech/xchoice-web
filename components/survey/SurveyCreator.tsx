@@ -2,11 +2,14 @@ import React, { FunctionComponent, useState } from "react";
 import { Form, Input, Button, Result, Alert } from "antd";
 import QuestionCreator from "./question/QuestionCreator";
 import { postSurvey } from "../../apis/survey";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
 
 interface Props {}
 
 const SurveyCreator: FunctionComponent<Props> = () => {
+  const { getAccessTokenSilently } = useAuth0();
+
   const [form] = Form.useForm();
   const [posting, setPosting] = useState(false);
   const [postError, setPostError] = useState(undefined);
@@ -28,7 +31,8 @@ const SurveyCreator: FunctionComponent<Props> = () => {
     setPosting(true);
     setPostError(undefined);
 
-    const result = await postSurvey(formData);
+    const accessToken = await getAccessTokenSilently();
+    const result = await postSurvey(formData, accessToken);
 
     setPostError(result.error);
     setPosted(!result.isError);

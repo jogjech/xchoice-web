@@ -6,12 +6,14 @@ import Link from "next/link";
 import { Col, Row, Button, Alert } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { SurveyMetadata } from "../models/survey";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import styles from "./dashboard.module.css";
 
 interface Props {}
 
 const Dashboard: FunctionComponent<Props> = () => {
+  const { getAccessTokenSilently } = useAuth0();
+
   const [surveyMetatdataList, setSurveyMetatdataList] = useState<
     SurveyMetadata[]
   >([]);
@@ -22,7 +24,9 @@ const Dashboard: FunctionComponent<Props> = () => {
 
   useEffect(() => {
     const fetchSurveys = async () => {
-      const result = await findSurveys(userId);
+      const accessToken = await getAccessTokenSilently();
+
+      const result = await findSurveys(userId, accessToken);
 
       if (result.isError) {
         setErrorMessage(result.error.message);

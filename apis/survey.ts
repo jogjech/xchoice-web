@@ -56,7 +56,10 @@ interface FindSurveysResult {
   surveyMetadataList?: SurveyMetadata[];
 }
 
-const postSurvey = async (survey: Survey): Promise<PostSurveyResult> => {
+const postSurvey = async (
+  survey: Survey,
+  accessToken: string
+): Promise<PostSurveyResult> => {
   console.log("Posting survey");
 
   const request = {
@@ -79,7 +82,12 @@ const postSurvey = async (survey: Survey): Promise<PostSurveyResult> => {
   try {
     const { data } = await axios.post(
       `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys`,
-      request
+      request,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
     );
 
     return {
@@ -193,13 +201,19 @@ const getSurvey = async (surveyId: string): Promise<GetSurveyResult> => {
 };
 
 const getSurveyReport = async (
-  surveyId: string
+  surveyId: string,
+  accessToken: string
 ): Promise<GetSurveyReportResult> => {
   console.log(`Getting survey report for survey ${surveyId}`);
 
   try {
     const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/${surveyId}`
+      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/${surveyId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
     );
 
     console.log(data);
@@ -236,7 +250,10 @@ const getSurveyReport = async (
 
 const deleteSurvey = async (surveyId: string) => {};
 
-const findSurveys = async (userId: string): Promise<FindSurveysResult> => {
+const findSurveys = async (
+  userId: string,
+  accessToken: string
+): Promise<FindSurveysResult> => {
   console.log(`Finding surveys for user ${userId}`);
 
   try {
@@ -244,6 +261,9 @@ const findSurveys = async (userId: string): Promise<FindSurveysResult> => {
       `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys`,
       {
         params: { userId: userId },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       }
     );
 

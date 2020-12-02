@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState, useEffect } from "react";
 import { getSurveyReport } from "../../../apis/survey";
 import { SurveyReport } from "../../../models/survey";
 import QuestionReport from "./QuestionReport";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Alert, Statistic } from "antd";
 
 interface Props {
@@ -9,13 +10,16 @@ interface Props {
 }
 
 const ReportViewer: FunctionComponent<Props> = ({ surveyId }) => {
+  const { getAccessTokenSilently } = useAuth0();
+
   const [surveyReport, setSurveyReport] = useState<SurveyReport>(undefined);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>(undefined);
 
   useEffect(() => {
     const fetchReport = async () => {
-      const result = await getSurveyReport(surveyId);
+      const accessToken = await getAccessTokenSilently();
+      const result = await getSurveyReport(surveyId, accessToken);
 
       if (result.isError) {
         setErrorMessage(result.error.message);
