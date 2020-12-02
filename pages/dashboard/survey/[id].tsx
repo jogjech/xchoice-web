@@ -10,7 +10,7 @@ import {
   Alert,
   Tooltip,
 } from "antd";
-import { Survey } from "../../../models/survey";
+import { Survey, SurveyStatus } from "../../../models/survey";
 import { getSurvey } from "../../../apis/survey";
 import SurveyViewer from "../../../components/survey/SurveyViewer";
 import ReportViewer from "../../../components/survey/report/ReportViewer";
@@ -51,6 +51,43 @@ const ManageSurveyPage: FunctionComponent<Props> = () => {
     }
   }, [router]);
 
+  const renderTakeSurveyButton = () => {
+    if (survey.status !== SurveyStatus.PUBLISHED) {
+      return;
+    }
+    return (
+      <Link href={`/survey/${surveyId}`}>
+        <Tooltip
+          placement="topLeft"
+          title="Take the survey as a participant. You'll be redirected to take the survey."
+          arrowPointAtCenter
+        >
+          <Button style={{ marginRight: "0.8rem" }}>Take the survey</Button>
+        </Tooltip>
+      </Link>
+    );
+  };
+
+  const renderActionButton = () => {
+    console.log("status", survey.status);
+    if (survey.status == null) {
+      return;
+    }
+    switch (survey.status) {
+      case SurveyStatus.PUBLISHED:
+        return <Button danger>Unpublish</Button>;
+      case SurveyStatus.UNPUBLISHED:
+        return (
+          <>
+            <Button style={{ marginRight: "0.8rem" }} type="primary">
+              Publish
+            </Button>
+            <Button danger>Delete</Button>
+          </>
+        );
+    }
+  };
+
   return (
     <>
       <Layout title="Manage Survey">
@@ -78,23 +115,8 @@ const ManageSurveyPage: FunctionComponent<Props> = () => {
                   <p className="secondary-title">{survey.surveyTitle}</p>
                 </Col>
                 <Col style={{ float: "right" }}>
-                  <Link href={`/survey/${surveyId}`}>
-                    <Tooltip
-                      placement="topLeft"
-                      title="Take the survey as a participant. You'll be redirected to take the survey."
-                      arrowPointAtCenter
-                    >
-                      <Button style={{ marginRight: "0.8rem" }}>
-                        Take the survey
-                      </Button>{" "}
-                    </Tooltip>
-                  </Link>
-
-                  {survey.published ? (
-                    <Button danger>Unpublish</Button>
-                  ) : (
-                    <Button type="primary">Publish</Button>
-                  )}
+                  {renderTakeSurveyButton()}
+                  {renderActionButton()}
                 </Col>
               </Row>
               <Tabs

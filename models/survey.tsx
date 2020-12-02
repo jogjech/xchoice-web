@@ -1,3 +1,10 @@
+export enum SurveyStatus {
+  DRAFT = "DRAFT",
+  PUBLISHED = "PUBLISHED",
+  UNPUBLISHED = "UNPUBLISHED",
+  DELETED = "DELETED",
+}
+
 export interface Choice {
   text: string;
   selections?: number;
@@ -11,7 +18,7 @@ export interface Question {
 export interface Survey {
   surveyTitle: string;
   questions: Question[];
-  published?: boolean;
+  status?: SurveyStatus;
 }
 
 export interface SurveyResponse {
@@ -22,8 +29,8 @@ export interface SurveyResponse {
 export interface SurveyMetadata {
   surveyId: string;
   responses: number;
-  published: boolean;
   title: string;
+  status?: SurveyStatus;
 }
 
 export interface SurveyReport {
@@ -32,4 +39,5 @@ export interface SurveyReport {
   surveyTitle: string;
   questions: Question[];
   published?: boolean;
+  status?: SurveyStatus;
 }

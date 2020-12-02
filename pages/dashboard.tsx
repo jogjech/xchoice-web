@@ -5,7 +5,7 @@ import { findSurveys } from "../apis/survey";
 import Link from "next/link";
 import { Col, Row, Button, Alert } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { SurveyMetadata } from "../models/survey";
+import { SurveyMetadata, SurveyStatus } from "../models/survey";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import styles from "./dashboard.module.css";
 
@@ -29,6 +29,7 @@ const Dashboard: FunctionComponent<Props> = () => {
       if (result.isError) {
         setErrorMessage(result.error.message);
       } else {
+        console.log(result);
         setSurveyMetatdataList(result.surveyMetadataList);
       }
       setLoading(false);
@@ -56,11 +57,19 @@ const Dashboard: FunctionComponent<Props> = () => {
     return (
       <div>
         <Row gutter={16}>
-          {surveyMetatdataList.map((surveyMetatdata) => (
-            <Col span={8} key={surveyMetatdata.surveyId}>
-              <SurveyCard surveyMetadata={surveyMetatdata}></SurveyCard>
-            </Col>
-          ))}
+          {surveyMetatdataList
+            .filter(
+              (surveyMetatdata) =>
+                surveyMetatdata &&
+                (surveyMetatdata.status === SurveyStatus.PUBLISHED ||
+                  surveyMetatdata.status === SurveyStatus.DRAFT ||
+                  surveyMetatdata.status === SurveyStatus.UNPUBLISHED)
+            )
+            .map((surveyMetatdata) => (
+              <Col span={8} key={surveyMetatdata.surveyId}>
+                <SurveyCard surveyMetadata={surveyMetatdata}></SurveyCard>
+              </Col>
+            ))}
           <Col span={8} key="createNew">
             <Link href="/survey/create">
               <Button type="dashed" className={styles.createNewCard}>

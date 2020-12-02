@@ -4,6 +4,7 @@ import {
   SurveyResponse,
   SurveyMetadata,
   SurveyReport,
+  SurveyStatus,
 } from "../models/survey";
 
 // For get requests, we can use SWR https://swr.vercel.app/getting-started
@@ -185,7 +186,7 @@ const getSurvey = async (
     return {
       isError: false,
       survey: {
-        published: true,
+        status: SurveyStatus[data.status],
         surveyTitle: data.title,
         questions: data.questions.map((question) => {
           return {
@@ -230,7 +231,7 @@ const getSurveyReport = async (
     return {
       isError: false,
       surveyReport: {
-        published: true,
+        status: SurveyStatus[data.status],
         surveyId: surveyId,
         responses: data.totalResponses,
         surveyTitle: data.title,
@@ -280,8 +281,8 @@ const findSurveys = async (accessToken: string): Promise<FindSurveysResult> => {
         return {
           surveyId: item.surveyId,
           responses: item.responses,
-          published: item.published,
           title: item.title,
+          status: SurveyStatus[item.status],
         };
       }),
     };

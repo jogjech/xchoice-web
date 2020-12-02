@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from "react";
 import { Card, Statistic, Tag } from "antd";
 import { useRouter } from "next/router";
-import { SurveyMetadata } from "../../models/survey";
+import { SurveyMetadata, SurveyStatus } from "../../models/survey";
 import { FileTextOutlined } from "@ant-design/icons";
 import styles from "./SurveyCard.module.css";
 
@@ -11,6 +11,18 @@ interface Props {
 
 const SurveyCard: FunctionComponent<Props> = ({ surveyMetadata }) => {
   const router = useRouter();
+
+  const renderTag = () => {
+    switch (surveyMetadata.status) {
+      case SurveyStatus.PUBLISHED:
+        return <Tag color="green">published</Tag>;
+      case SurveyStatus.UNPUBLISHED:
+        return <Tag color="orange">unpublished</Tag>;
+      case SurveyStatus.DRAFT:
+        return <Tag color="default">draft</Tag>;
+    }
+    return null;
+  };
 
   return (
     <>
@@ -35,11 +47,7 @@ const SurveyCard: FunctionComponent<Props> = ({ surveyMetadata }) => {
                 value={surveyMetadata.responses}
                 prefix={<FileTextOutlined />}
               />
-              {surveyMetadata.published ? (
-                <Tag color="green">published</Tag>
-              ) : (
-                <Tag color="orange">unpublished</Tag>
-              )}
+              {renderTag()}
             </div>
           </Card>
         </div>

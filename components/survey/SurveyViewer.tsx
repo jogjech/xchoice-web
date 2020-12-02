@@ -24,7 +24,6 @@ const SurveyViewer: FunctionComponent<Props> = ({
 }) => {
   const { getAccessTokenSilently } = useAuth0();
 
-  // TODO: missing the handle of getSurvey and getSurveyResponse errors
   const [surveyId, setSurveyId] = useState<string>(undefined);
   const [survey, setSurvey] = useState<Survey>(undefined);
   const [loading, setLoading] = useState(true);

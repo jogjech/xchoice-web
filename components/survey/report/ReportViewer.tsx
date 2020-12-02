@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import { getSurveyReport } from "../../../apis/survey";
-import { SurveyReport } from "../../../models/survey";
+import { SurveyReport, SurveyStatus } from "../../../models/survey";
 import QuestionReport from "./QuestionReport";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Alert, Statistic } from "antd";
@@ -42,7 +42,8 @@ const ReportViewer: FunctionComponent<Props> = ({ surveyId }) => {
         ></Alert>
       ) : (
         <div>
-          {surveyReport.published ? (
+          {surveyReport.status === SurveyStatus.PUBLISHED ||
+          surveyReport.status === SurveyStatus.UNPUBLISHED ? (
             <>
               <Statistic
                 title="Responses captured"

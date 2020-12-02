@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
-import { SurveyMetadata } from "../../models/survey";
+import { SurveyMetadata, SurveyStatus } from "../../models/survey";
 import SurveyCard from "./SurveyCard";
 
 describe("Survey card", () => {
@@ -11,15 +11,15 @@ describe("Survey card", () => {
   const publishedMetadata: SurveyMetadata = {
     surveyId: "surveyId1",
     responses: 13,
-    published: true,
     title: "Survey Title 1",
+    status: SurveyStatus.PUBLISHED,
   };
 
   const unpublishedMetadata: SurveyMetadata = {
     surveyId: "surveyId2",
     responses: 15,
-    published: false,
     title: "Survey Title 2",
+    status: SurveyStatus.UNPUBLISHED,
   };
 
   beforeEach(() => {
