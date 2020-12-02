@@ -1,11 +1,21 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import Layout from "../../../components/layout/Layout";
-import { Tabs, Breadcrumb, BackTop, Row, Col, Button, Alert } from "antd";
+import {
+  Tabs,
+  Breadcrumb,
+  BackTop,
+  Row,
+  Col,
+  Button,
+  Alert,
+  Tooltip,
+} from "antd";
 import { Survey } from "../../../models/survey";
 import { getSurvey } from "../../../apis/survey";
 import SurveyViewer from "../../../components/survey/SurveyViewer";
 import ReportViewer from "../../../components/survey/report/ReportViewer";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 const { TabPane } = Tabs;
@@ -64,6 +74,18 @@ const ManageSurveyPage: FunctionComponent<Props> = () => {
                   <p className="secondary-title">{survey.surveyTitle}</p>
                 </Col>
                 <Col style={{ float: "right" }}>
+                  <Link href={`/survey/${surveyId}`}>
+                    <Tooltip
+                      placement="topLeft"
+                      title="Take the survey as a participant. You'll be redirected to take the survey."
+                      arrowPointAtCenter
+                    >
+                      <Button style={{ marginRight: "0.8rem" }}>
+                        Take the survey
+                      </Button>{" "}
+                    </Tooltip>
+                  </Link>
+
                   {survey.published ? (
                     <Button danger>Unpublish</Button>
                   ) : (
