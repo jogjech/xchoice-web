@@ -162,12 +162,22 @@ const getSurveyResponse = async (
   }
 };
 
-const getSurvey = async (surveyId: string): Promise<GetSurveyResult> => {
+const getSurvey = async (
+  surveyId: string,
+  accessToken?: string
+): Promise<GetSurveyResult> => {
   console.log("Getting survey", surveyId);
 
   try {
     const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/${surveyId}`
+      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/${surveyId}`,
+      {
+        ...(!!accessToken && {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }),
+      }
     );
 
     console.log(data);

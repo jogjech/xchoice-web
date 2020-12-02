@@ -15,6 +15,7 @@ import { getSurvey } from "../../../apis/survey";
 import SurveyViewer from "../../../components/survey/SurveyViewer";
 import ReportViewer from "../../../components/survey/report/ReportViewer";
 import { useRouter } from "next/router";
+import { useAuth0 } from "@auth0/auth0-react";
 import Link from "next/link";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 
@@ -23,6 +24,8 @@ const { TabPane } = Tabs;
 interface Props {}
 
 const ManageSurveyPage: FunctionComponent<Props> = () => {
+  const { getAccessTokenSilently } = useAuth0();
+
   const router = useRouter();
   const surveyId = router.query.id as string;
 
@@ -33,7 +36,8 @@ const ManageSurveyPage: FunctionComponent<Props> = () => {
   useEffect(() => {
     if (router.asPath !== router.route) {
       const fetchSurvey = async () => {
-        const result = await getSurvey(surveyId);
+        const accessToken = await getAccessTokenSilently();
+        const result = await getSurvey(surveyId, accessToken);
 
         if (result.isError) {
           setErrorMessage(result.error.message);

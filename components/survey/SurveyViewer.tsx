@@ -5,6 +5,7 @@ import {
   postSurveyResponse,
   getSurveyResponse,
 } from "../../apis/survey";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Survey } from "../../models/survey";
 import QuestionViewer from "./question/QuestionViewer";
 import { useRouter } from "next/router";
@@ -21,6 +22,8 @@ const SurveyViewer: FunctionComponent<Props> = ({
   slug: inputSlug,
   preview,
 }) => {
+  const { getAccessTokenSilently } = useAuth0();
+
   // TODO: missing the handle of getSurvey and getSurveyResponse errors
   const [surveyId, setSurveyId] = useState<string>(undefined);
   const [survey, setSurvey] = useState<Survey>(undefined);
@@ -32,6 +35,7 @@ const SurveyViewer: FunctionComponent<Props> = ({
   const [postError, setPostError] = useState(undefined);
   const [posted, setPosted] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
+  const [loadError, setLoadError] = useState<string>(undefined);
   const router = useRouter();
 
   useEffect(() => {
@@ -42,21 +46,37 @@ const SurveyViewer: FunctionComponent<Props> = ({
         tempSurveyId = inputSurveyId;
       } else {
         const result = await getSurveyResponse(inputSlug);
+        if (result.isError) {
+          setLoadError(result.error.message);
+          setLoading(false);
+          return;
+        }
         tempSurveyId = result.surveyResponse.surveyId;
         tempSelections = result.surveyResponse.selections;
       }
 
       setSurveyId(tempSurveyId);
 
-      const result = await getSurvey(tempSurveyId as string);
+      let result;
+      if (preview) {
+        const accessToken = await getAccessTokenSilently();
+        result = await getSurvey(tempSurveyId as string, accessToken);
+      } else {
+        result = await getSurvey(tempSurveyId as string);
+      }
 
-      setSelections(
-        !!tempSelections
-          ? tempSelections
-          : Array.apply(null, Array(result.survey.questions.length))
-      );
+      if (result.isError) {
+        setLoadError(result.error.message);
+      } else {
+        setSelections(
+          !!tempSelections
+            ? tempSelections
+            : Array.apply(null, Array(result.survey.questions.length))
+        );
 
-      setSurvey(result.survey);
+        setSurvey(result.survey);
+      }
+
       setLoading(false);
     };
     fetchSurvey();
@@ -114,6 +134,15 @@ const SurveyViewer: FunctionComponent<Props> = ({
       router.push(`/survey/response/${responseSlug}`);
     }
   };
+
+  if (!!loadError) {
+    return (
+      <Alert
+        message="Failed to load survey. Please refresh to try again."
+        type="error"
+      ></Alert>
+    );
+  }
 
   return (
     <>
