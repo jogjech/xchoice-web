@@ -12,7 +12,6 @@ describe("Survey card", () => {
     surveyId: "surveyId1",
     responses: 13,
     published: true,
-    userId: "userId1",
     title: "Survey Title 1",
   };
 
@@ -20,7 +19,6 @@ describe("Survey card", () => {
     surveyId: "surveyId2",
     responses: 15,
     published: false,
-    userId: "userId2",
     title: "Survey Title 2",
   };
 

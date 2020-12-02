@@ -63,7 +63,6 @@ const postSurvey = async (
   console.log("Posting survey");
 
   const request = {
-    publisherId: 33,
     title: survey.surveyTitle,
     questions: survey.questions.map((question) => {
       return {
@@ -250,17 +249,13 @@ const getSurveyReport = async (
 
 const deleteSurvey = async (surveyId: string) => {};
 
-const findSurveys = async (
-  userId: string,
-  accessToken: string
-): Promise<FindSurveysResult> => {
-  console.log(`Finding surveys for user ${userId}`);
+const findSurveys = async (accessToken: string): Promise<FindSurveysResult> => {
+  console.log(`Finding surveys`);
 
   try {
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys`,
       {
-        params: { userId: userId },
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -276,12 +271,12 @@ const findSurveys = async (
           surveyId: item.surveyId,
           responses: item.responses,
           published: item.published,
-          userId: userId,
           title: item.title,
         };
       }),
     };
   } catch (error) {
+    console.log(error);
     return {
       isError: true,
       error: {

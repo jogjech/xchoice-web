@@ -20,13 +20,11 @@ const Dashboard: FunctionComponent<Props> = () => {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>(undefined);
 
-  const userId = "33"; // TODO: Update the logic to read current user id instead of hardcoding it
-
   useEffect(() => {
     const fetchSurveys = async () => {
       const accessToken = await getAccessTokenSilently();
 
-      const result = await findSurveys(userId, accessToken);
+      const result = await findSurveys(accessToken);
 
       if (result.isError) {
         setErrorMessage(result.error.message);
