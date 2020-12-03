@@ -1,24 +1,25 @@
 ## Introduction
 
-X-Choice is a survey platform which can allow users to publish surveys quickly.
+[X-Choice](https://xchoice.vercel.app) is a survey platform which can allow users to publish surveys quickly.
+
+This package is the main package with  project high-level details. For the bankend API design and DB design, please visit [xchoice-server](https://github.com/kevinwchn/xchoice-server).
 
 ## Tech stack
-
-### Front-end
 
 - React.js
 - Next.js
 - TypeScript
 - Ant Design
 - Jest & Enzyme
+- Prettier
+- Eslint
+- Auth0
 
-### Back-end
+## Prod deployment
 
-- Java
-- Spring & SpringBoot
-- JUnit 5
-- Mockito
-- MySQL
+This website is hosted on [Vercel](http://vercel.com/), which is a platform made for Next.js. The public URL for this website is https://xchoice.vercel.app.
+
+Vercel tracks this github repo and deploys automatically when there are updates on main branch.
 
 ## Local development
 
