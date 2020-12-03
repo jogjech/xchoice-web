@@ -89,36 +89,41 @@ const Nav: FunctionComponent<Props> = () => {
   };
 
   return (
-    <Header>
-      <div className={styles.logo}>
-        <Image
-          src="/logo.png"
-          className={styles.logoImg}
-          alt="X Choice"
-          width="50"
-          height="50"
-        ></Image>
-        <span className={styles.logoText}>Choice</span>
-      </div>
+    <>
+      <Header>
+        <Link href="/">
+          <div className={styles.logo}>
+            <>
+              <Image
+                src="/logo.png"
+                className={styles.logoImg}
+                alt="X Choice"
+                width="50"
+                height="50"
+              ></Image>
+              <span className={styles.logoText}>Choice</span>
+            </>
+          </div>
+        </Link>
+        <Menu theme="dark" mode="horizontal">
+          {!isMobile && (
+            <>
+              <Menu.Item>
+                <Link href="/survey/create">
+                  <a>Create Survey</a>
+                </Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link href="/dashboard">
+                  <a>My Surveys</a>
+                </Link>
+              </Menu.Item>
+            </>
+          )}
 
-      <Menu theme="dark" mode="horizontal">
-        {!isMobile && (
-          <>
-            <Menu.Item>
-              <Link href="/survey/create">
-                <a>Create Survey</a>
-              </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link href="/dashboard">
-                <a>My Surveys</a>
-              </Link>
-            </Menu.Item>
-          </>
-        )}
-
-        {renderRightMenu()}
-      </Menu>
+          {renderRightMenu()}
+        </Menu>
+      </Header>
       <Drawer
         title=""
         placement="right"
@@ -137,7 +142,7 @@ const Nav: FunctionComponent<Props> = () => {
         <Divider dashed></Divider>
         {renderAuthButtonInDrawer()}
       </Drawer>
-    </Header>
+    </>
   );
 };
 

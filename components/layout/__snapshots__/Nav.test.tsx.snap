@@ -1,44 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Nav bar renders correctly 1`] = `
-<Header>
-  <div
-    className="logo"
-  >
-    <Image
-      alt="X Choice"
-      className="logoImg"
-      height="50"
-      src="/logo.png"
-      width="50"
-    />
-    <span
-      className="logoText"
+<Fragment>
+  <Header>
+    <Link
+      href="/"
     >
-      Choice
-    </span>
-  </div>
-  <Menu
-    mode="horizontal"
-    theme="dark"
-  >
-    <div
-      onClick={[Function]}
-      style={
-        Object {
-          "float": "right",
-        }
-      }
+      <div
+        className="logo"
+      >
+        <Image
+          alt="X Choice"
+          className="logoImg"
+          height="50"
+          src="/logo.png"
+          width="50"
+        />
+        <span
+          className="logoText"
+        >
+          Choice
+        </span>
+      </div>
+    </Link>
+    <Menu
+      mode="horizontal"
+      theme="dark"
     >
-      <ForwardRef(MenuOutlined)
+      <div
+        onClick={[Function]}
         style={
           Object {
-            "color": "white",
+            "float": "right",
           }
         }
-      />
-    </div>
-  </Menu>
+      >
+        <ForwardRef(MenuOutlined)
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        />
+      </div>
+    </Menu>
+  </Header>
   <DrawerWrapper
     closable={false}
     onClose={[Function]}
@@ -78,5 +84,5 @@ exports[`Nav bar renders correctly 1`] = `
       </a>
     </div>
   </DrawerWrapper>
-</Header>
+</Fragment>
 `;
