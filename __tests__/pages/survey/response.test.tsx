@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
-import ViewResponsePage from "../../../../pages/survey/response/[slug]";
+import ViewResponsePage from "../../../pages/survey/response";
 
 const slug = "responseSlug";
 

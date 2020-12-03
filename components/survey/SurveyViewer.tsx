@@ -123,14 +123,14 @@ const SurveyViewer: FunctionComponent<Props> = ({
   };
 
   const handleViewResponseButtonClick = () => {
-    const toPath = `/survey/response/${responseSlug}`;
+    const toPath = `/survey/response?slug=${responseSlug}`;
 
     if (toPath === router.asPath) {
       setRedirecting(true);
       router.reload();
     } else {
       setRedirecting(true);
-      router.push(`/survey/response/${responseSlug}`);
+      router.push(toPath);
     }
   };
 
