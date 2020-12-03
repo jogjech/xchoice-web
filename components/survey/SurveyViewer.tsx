@@ -124,12 +124,12 @@ const SurveyViewer: FunctionComponent<Props> = ({
 
   const handleViewResponseButtonClick = () => {
     const toPath = `/survey/response?slug=${responseSlug}`;
-
-    if (toPath === router.asPath) {
-      setRedirecting(true);
+    setRedirecting(true);
+    // We force the page to reload to display the selections instead of the confirmation page.
+    // TODO: This can also be done by changing the widget state. Will optimize in the future.
+    if (toPath.split("?")[0] === router.asPath.split("?")[0]) {
       router.reload();
     } else {
-      setRedirecting(true);
       router.push(toPath);
     }
   };
