@@ -7,12 +7,14 @@ import { Col, Row, Button, Alert } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { SurveyMetadata, SurveyStatus } from "../models/survey";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useRouter } from "next/router";
 import styles from "./dashboard.module.css";
 
 interface Props {}
 
 const Dashboard: FunctionComponent<Props> = () => {
   const { getAccessTokenSilently } = useAuth0();
+  const router = useRouter();
 
   const [surveyMetatdataList, setSurveyMetatdataList] = useState<
     SurveyMetadata[]
@@ -54,8 +56,19 @@ const Dashboard: FunctionComponent<Props> = () => {
         ></Alert>
       );
     }
+
     return (
       <div>
+        {router.query.surveyDeleted && (
+          <Alert
+            message={`Sucessfully deleted survey ${
+              router.query.deletedSurveyTitle || ""
+            }`}
+            type="success"
+            style={{ marginBottom: "1.3rem" }}
+            closable
+          ></Alert>
+        )}
         <Row gutter={16}>
           {surveyMetatdataList
             .filter(

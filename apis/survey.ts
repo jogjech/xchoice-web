@@ -260,6 +260,41 @@ const getSurveyReport = async (
 
 const deleteSurvey = async (surveyId: string) => {};
 
+const updateSurveyStatus = async (
+  surveyId: string,
+  status: SurveyStatus,
+  accessToken: string
+) => {
+  console.log(`Changing survey status`);
+
+  try {
+    const { data } = await axios.post(
+      `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/${surveyId}`,
+      JSON.stringify(status),
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(data);
+
+    return {
+      isError: false,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      isError: true,
+      error: {
+        message: "Cannot find surveys for this user",
+      },
+    };
+  }
+};
+
 const findSurveys = async (accessToken: string): Promise<FindSurveysResult> => {
   console.log(`Finding surveys`);
 
@@ -305,4 +340,5 @@ export {
   findSurveys,
   postSurveyResponse,
   getSurveyResponse,
+  updateSurveyStatus,
 };
