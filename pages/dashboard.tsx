@@ -3,7 +3,7 @@ import Layout from "../components/layout/Layout";
 import SurveyCard from "../components/survey/SurveyCard";
 import { findSurveys } from "../apis/survey";
 import Link from "next/link";
-import { Col, Row, Button, Alert } from "antd";
+import { Col, Row, Button, Alert, BackTop } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { SurveyMetadata, SurveyStatus } from "../models/survey";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
@@ -84,11 +84,18 @@ const Dashboard: FunctionComponent<Props> = () => {
                   surveyMetatdata.status === SurveyStatus.UNPUBLISHED)
             )
             .map((surveyMetatdata) => (
-              <Col span={8} key={surveyMetatdata.surveyId}>
+              <Col
+                xs={24}
+                sm={24}
+                md={12}
+                lg={8}
+                xl={8}
+                key={surveyMetatdata.surveyId}
+              >
                 <SurveyCard surveyMetadata={surveyMetatdata}></SurveyCard>
               </Col>
             ))}
-          <Col span={8} key="createNew">
+          <Col xs={24} sm={24} md={12} lg={8} xl={8} key="createNew">
             <Link href="/survey/create">
               <Button type="dashed" className={styles.createNewCard}>
                 <div>
@@ -108,6 +115,7 @@ const Dashboard: FunctionComponent<Props> = () => {
         <div>
           <p className="title">My Surveys</p>
         </div>
+        <BackTop></BackTop>
         {renderContent()}
       </Layout>
     </div>

@@ -29,17 +29,11 @@ describe("Nav bar", () => {
     expect(menu.exists()).toBeTruthy();
     const menuItems = menu.children();
     const links = menuItems.map((menuItem) => menuItem.children());
-    expect(links.length).toBe(3);
-    expect(links[0].prop("href")).toBe("/survey/create");
-    expect(links[0].children().text()).toBe("Create Survey");
-    expect(links[1].prop("href")).toBe("/dashboard");
-    expect(links[1].children().text()).toBe("My Surveys");
-    expect(links[2].children().text()).toBe("Logout");
+    expect(links.length).toBe(1);
   });
 
   it("contains logo", () => {
     const logo = wrapper.find(".logo");
     expect(logo.exists()).toBeTruthy();
-    expect(logo.childAt(0).text()).toBe("X Choice");
   });
 });

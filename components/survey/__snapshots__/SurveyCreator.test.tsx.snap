@@ -68,6 +68,7 @@ exports[`Survey creator renders correctly 1`] = `
       }
     >
       <Input
+        maxLength={100}
         placeholder="Survey Title"
         type="text"
       />

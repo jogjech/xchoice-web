@@ -2,57 +2,81 @@
 
 exports[`Nav bar renders correctly 1`] = `
 <Header>
-  <Link
-    href="/"
+  <div
+    className="logo"
   >
-    <div
-      className="logo"
+    <Image
+      alt="X Choice"
+      className="logoImg"
+      height="50"
+      src="/logo.png"
+      width="50"
+    />
+    <span
+      className="logoText"
     >
-      <a>
-        X Choice
-      </a>
-    </div>
-  </Link>
+      Choice
+    </span>
+  </div>
   <Menu
     mode="horizontal"
     theme="dark"
   >
-    <MenuItem>
-      <Link
-        href="/survey/create"
-      >
-        <a>
-          Create Survey
-        </a>
-      </Link>
-    </MenuItem>
-    <MenuItem>
-      <Link
-        href="/dashboard"
-      >
-        <a>
-          My Surveys
-        </a>
-      </Link>
-    </MenuItem>
-    <MenuItem
+    <div
+      onClick={[Function]}
       style={
         Object {
           "float": "right",
         }
       }
     >
-      <Button
-        block={false}
-        className="loginButton"
-        ghost={false}
-        htmlType="button"
-        loading={false}
+      <ForwardRef(MenuOutlined)
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+      />
+    </div>
+  </Menu>
+  <DrawerWrapper
+    closable={false}
+    onClose={[Function]}
+    placement="right"
+    title=""
+    visible={false}
+  >
+    <div
+      className="drawerItem"
+    >
+      <Link
+        href="/survey/create"
+      >
+        Create Survey
+      </Link>
+    </div>
+    <div
+      className="drawerItem"
+    >
+      <Link
+        href="/dashboard"
+      >
+        My Surveys
+      </Link>
+    </div>
+    <Divider
+      dashed={true}
+    />
+    <div
+      className="drawerItem"
+    >
+      <a
+        href=""
         onClick={[Function]}
       >
         Logout
-      </Button>
-    </MenuItem>
-  </Menu>
+      </a>
+    </div>
+  </DrawerWrapper>
 </Header>
 `;

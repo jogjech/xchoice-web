@@ -23,7 +23,7 @@ exports[`Survey card with published survey metatdata renders correctly 1`] = `
       headStyle={
         Object {
           "backgroundColor": "rgba(26, 119, 213, 0.6)",
-          "fontSize": "1.4rem",
+          "fontSize": "1.3rem",
         }
       }
       hoverable={true}
@@ -56,7 +56,7 @@ exports[`Survey card with unpublished survey metatdata renders correctly 1`] = `
       headStyle={
         Object {
           "backgroundColor": "rgba(26, 119, 213, 0.6)",
-          "fontSize": "1.4rem",
+          "fontSize": "1.3rem",
         }
       }
       hoverable={true}
