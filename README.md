@@ -15,6 +15,28 @@ This package is the main package with  project high-level details. For the banke
 - Eslint
 - Auth0
 
+
+## Routes
+
+For priority, 
+- P0 - essential product feature. 
+- P1 - important, but the product can work without these. 
+- P2 - nice to have
+
+| Route | Description | Priority |
+| ------------- | ------------- | ----- |
+| `/`  | Home page  | P0 |
+| `/survey/create`  | Create survey page  | P0 |
+| `/survey?id={id}`  | View survey page. Users can take the suvey at this page too.  | P0 |
+| `/survey/response?slug={slug}`  | View survey page. Users can take the suvey at this page too. This page is for users to check the response after taking the survey.  | P0 |
+| `/dashboard`  | Dashbord page which displays all the surveys the publisher created | P0 |
+| `/dashboard/survey?id={id}`  | Page to manage a specific survey | P0 |
+| `/signin`  | Sign in page | P0 |
+| `/signup`  | Sign up page | P0 |
+| `/profile`  | Page to manage user settings. | P1 |
+| `/explorer`  | Page to explore random active surveys. User can pick a few to take. | P2 |
+
+
 ## Prod deployment
 
 This website is hosted on [Vercel](http://vercel.com/), which is a platform made for Next.js. The public URL for this website is https://xchoice.vercel.app.
@@ -46,26 +68,6 @@ For all of the components, we have the test to compare the current version with 
 ```bash
 yarn test -u
 ```
-
-## Routes
-
-For priority, 
-- P0 - essential product feature. 
-- P1 - important, but the product can work without these. 
-- P2 - nice to have
-
-| Route | Description | Priority |
-| ------------- | ------------- | ----- |
-| `/`  | Home page  | P0 |
-| `/survey/create`  | Create survey page  | P0 |
-| `/survey?id={id}`  | View survey page. Users can take the suvey at this page too.  | P0 |
-| `/survey/response?slug={slug}`  | View survey page. Users can take the suvey at this page too. This page is for users to check the response after taking the survey.  | P0 |
-| `/dashboard`  | Dashbord page which displays all the surveys the publisher created | P0 |
-| `/dashboard/survey?id={id}`  | Page to manage a specific survey | P0 |
-| `/signin`  | Sign in page | P0 |
-| `/signup`  | Sign up page | P0 |
-| `/profile`  | Page to manage user settings. | P1 |
-| `/explorer`  | Page to explore random active surveys. User can pick a few to take. | P2 |
 
 ## Appendix
 

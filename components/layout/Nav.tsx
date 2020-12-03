@@ -20,18 +20,6 @@ const Nav: FunctionComponent<Props> = () => {
   const renderRightMenu = () => {
     if (isLoading) return;
     if (isMobile) {
-      if (!isAuthenticated) {
-        return (
-          <div style={{ float: "right" }}>
-            <Button
-              className={styles.loginButton}
-              onClick={() => loginWithRedirect()}
-            >
-              Login / Sign-up
-            </Button>
-          </div>
-        );
-      }
       return (
         <div
           style={{ float: "right" }}
