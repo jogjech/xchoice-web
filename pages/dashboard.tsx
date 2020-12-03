@@ -39,6 +39,10 @@ const Dashboard: FunctionComponent<Props> = () => {
     fetchSurveys();
   }, []);
 
+  const closeBanner = () => {
+    window.history.replaceState({}, "My Surveys", router.asPath.split("?")[0]);
+  };
+
   const renderContent = () => {
     if (loading) {
       return (
@@ -67,6 +71,7 @@ const Dashboard: FunctionComponent<Props> = () => {
             type="success"
             style={{ marginBottom: "1.3rem" }}
             closable
+            onClose={closeBanner}
           ></Alert>
         )}
         <Row gutter={16}>
