@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
-import Layout from "../../../components/layout/Layout";
+import Layout from "../../components/layout/Layout";
 import {
   Tabs,
   Breadcrumb,
@@ -10,10 +10,10 @@ import {
   Alert,
   Tooltip,
 } from "antd";
-import { Survey, SurveyStatus } from "../../../models/survey";
-import { getSurvey, updateSurveyStatus } from "../../../apis/survey";
-import SurveyViewer from "../../../components/survey/SurveyViewer";
-import ReportViewer from "../../../components/survey/report/ReportViewer";
+import { Survey, SurveyStatus } from "../../models/survey";
+import { getSurvey, updateSurveyStatus } from "../../apis/survey";
+import SurveyViewer from "../../components/survey/SurveyViewer";
+import ReportViewer from "../../components/survey/report/ReportViewer";
 import { useRouter } from "next/router";
 import { useAuth0 } from "@auth0/auth0-react";
 import Link from "next/link";
@@ -111,7 +111,7 @@ const ManageSurveyPage: FunctionComponent<Props> = () => {
       return;
     }
     return (
-      <Link href={`/survey/${surveyId}`}>
+      <Link href={`/survey?id=${surveyId}`}>
         <Tooltip
           placement="topLeft"
           title="Take the survey as a participant. You'll be redirected to take the survey."

@@ -109,6 +109,11 @@ const SurveyViewer: FunctionComponent<Props> = ({
         setPostError(result.error);
       } else {
         setResponseSlug(result.slug);
+        window.history.replaceState(
+          {},
+          "View response",
+          `/survey/response?slug=${result.slug}`
+        );
       }
       setPosted(!result.isError);
     } else {
@@ -120,18 +125,6 @@ const SurveyViewer: FunctionComponent<Props> = ({
   const validateSelections: () => boolean = () => {
     setValidated(true);
     return selections.every((i) => i != null);
-  };
-
-  const handleViewResponseButtonClick = () => {
-    const toPath = `/survey/response?slug=${responseSlug}`;
-    setRedirecting(true);
-    // We force the page to reload to display the selections instead of the confirmation page.
-    // TODO: This can also be done by changing the widget state. Will optimize in the future.
-    if (toPath.split("?")[0] === router.asPath.split("?")[0]) {
-      router.reload();
-    } else {
-      router.push(toPath);
-    }
   };
 
   if (!!loadError) {
@@ -155,7 +148,7 @@ const SurveyViewer: FunctionComponent<Props> = ({
               type="primary"
               key="console"
               loading={redirecting}
-              onClick={handleViewResponseButtonClick}
+              onClick={() => setPosted(false)}
             >
               View my response
             </Button>,

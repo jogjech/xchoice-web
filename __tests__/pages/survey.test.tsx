@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
-import ViewSurveyPage from "../../../pages/survey/[id]";
+import ViewSurveyPage from "../../pages/survey";
 
 const surveyId = "surveyId";
 

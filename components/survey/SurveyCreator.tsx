@@ -54,7 +54,7 @@ const SurveyCreator: FunctionComponent<Props> = () => {
               loading={redirecting}
               onClick={() => {
                 setRedirecting(true);
-                router.push(`/dashboard/survey/${surveyId}`);
+                router.push(`/dashboard/survey?id=${surveyId}`);
               }}
             >
               View / manage my survey
