@@ -21,7 +21,7 @@ const ChoiceCreator: FunctionComponent<Props> = ({ questionField }) => {
                 label={`Choice ${field.key + 1}`}
                 rules={[{ required: true, message: "Missing choice" }]}
               >
-                <Input placeholder="Choice" />
+                <Input placeholder="Choice" maxLength={100} />
               </Form.Item>
             </div>
           ))}

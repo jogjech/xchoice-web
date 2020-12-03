@@ -89,7 +89,7 @@ const SurveyCreator: FunctionComponent<Props> = () => {
               name="surveyTitle"
               rules={[{ required: true, message: "Missing survey title" }]}
             >
-              <Input placeholder="Survey Title"></Input>
+              <Input placeholder="Survey Title" maxLength={100}></Input>
             </Form.Item>
             <QuestionCreator></QuestionCreator>
             <Form.Item>

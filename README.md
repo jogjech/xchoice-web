@@ -57,14 +57,13 @@ For priority,
 | ------------- | ------------- | ----- |
 | `/`  | Home page  | P0 |
 | `/survey/create`  | Create survey page  | P0 |
-| `/survey/[id]`  | View survey page. Users can take the suvey at this page too.  | P0 |
-| `/survey/response/[slug]`  | View survey page. Users can take the suvey at this page too. This page is for users to check the response after taking the survey.  | P0 |
+| `/survey?id={id}`  | View survey page. Users can take the suvey at this page too.  | P0 |
+| `/survey/response?slug={slug}`  | View survey page. Users can take the suvey at this page too. This page is for users to check the response after taking the survey.  | P0 |
 | `/dashboard`  | Dashbord page which displays all the surveys the publisher created | P0 |
-| `/dashboard/survey/[id]`  | Page to manage a specific survey | P0 |
+| `/dashboard/survey?id={id}`  | Page to manage a specific survey | P0 |
 | `/signin`  | Sign in page | P0 |
 | `/signup`  | Sign up page | P0 |
 | `/profile`  | Page to manage user settings. | P1 |
-| `/forget-password`  | Forget password page | P1 |
 | `/explorer`  | Page to explore random active surveys. User can pick a few to take. | P2 |
 
 ## Appendix

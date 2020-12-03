@@ -20,7 +20,7 @@ const QuestionCreator: FunctionComponent<Props> = () => {
                 label="Question Title"
                 rules={[{ required: true, message: "Missing question title" }]}
               >
-                <Input placeholder="Question Title" />
+                <Input placeholder="Question Title" maxLength={100} />
               </Form.Item>
               <ChoiceCreator questionField={question}></ChoiceCreator>
             </div>

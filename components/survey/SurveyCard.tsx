@@ -34,7 +34,7 @@ const SurveyCard: FunctionComponent<Props> = ({ surveyMetadata }) => {
             bordered
             className={styles.surveyCard}
             headStyle={{
-              fontSize: "1.4rem",
+              fontSize: "1.3rem",
               backgroundColor: "rgba(26, 119, 213, 0.6)",
             }}
             onClick={() => {
