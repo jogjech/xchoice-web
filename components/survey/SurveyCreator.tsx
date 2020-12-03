@@ -3,12 +3,14 @@ import { Form, Input, Button, Result, Alert } from "antd";
 import QuestionCreator from "./question/QuestionCreator";
 import { postSurvey } from "../../apis/survey";
 import { useAuth0 } from "@auth0/auth0-react";
+import QRCode from "qrcode";
 import { useRouter } from "next/router";
 
 interface Props {}
 
 const SurveyCreator: FunctionComponent<Props> = () => {
   const { getAccessTokenSilently } = useAuth0();
+  const router = useRouter();
 
   const [form] = Form.useForm();
   const [posting, setPosting] = useState(false);
@@ -16,7 +18,7 @@ const SurveyCreator: FunctionComponent<Props> = () => {
   const [posted, setPosted] = useState(false);
   const [surveyId, setSurveyId] = useState("");
   const [redirecting, setRedirecting] = useState(false);
-  const router = useRouter();
+  const [qr, setQR] = useState<string>(undefined);
 
   const handleFormFinish = async (formData: {
     surveyTitle: string;
@@ -38,29 +40,47 @@ const SurveyCreator: FunctionComponent<Props> = () => {
     setPosted(!result.isError);
     setSurveyId(result.surveyId);
     setPosting(false);
+
+    const generatedQR = await generateQR(
+      `${window.location.origin}/survey?id=${result.surveyId}`
+    );
+    setQR(generatedQR);
+  };
+
+  const generateQR = async (text) => {
+    try {
+      return await QRCode.toDataURL(text);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
     <>
       {posted ? (
-        <Result
-          status="success"
-          title="Your survey is posted!"
-          subTitle={`Survey ID: ${surveyId}.`}
-          extra={[
-            <Button
-              type="primary"
-              key="console"
-              loading={redirecting}
-              onClick={() => {
-                setRedirecting(true);
-                router.push(`/dashboard/survey?id=${surveyId}`);
-              }}
-            >
-              View / manage my survey
-            </Button>,
-          ]}
-        />
+        <>
+          <Result
+            status="success"
+            title={`Your survey is posted! Survey URL: ${window.location.origin}/survey?id=${surveyId}`}
+            subTitle={`Please share the QR code below for others to take the survey.`}
+            extra={[
+              <Button
+                type="primary"
+                key="console"
+                loading={redirecting}
+                onClick={() => {
+                  setRedirecting(true);
+                  router.push(`/dashboard/survey?id=${surveyId}`);
+                }}
+              >
+                View / manage my survey
+              </Button>,
+            ]}
+          ></Result>
+          <div>
+            <img src={qr} style={{ margin: "auto", display: "block" }}></img>
+          </div>
+        </>
       ) : (
         <>
           <div>

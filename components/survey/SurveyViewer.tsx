@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Survey } from "../../models/survey";
 import QuestionViewer from "./question/QuestionViewer";
 import { useRouter } from "next/router";
+import QRCode from "qrcode";
 import styles from "./SurveyViewer.module.css";
 
 interface Props {
@@ -35,6 +36,7 @@ const SurveyViewer: FunctionComponent<Props> = ({
   const [posted, setPosted] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
   const [loadError, setLoadError] = useState<string>(undefined);
+  const [qr, setQR] = useState<string>(undefined);
   const router = useRouter();
 
   useEffect(() => {
@@ -93,6 +95,14 @@ const SurveyViewer: FunctionComponent<Props> = ({
     });
   };
 
+  const generateQR = async (text) => {
+    try {
+      return await QRCode.toDataURL(text);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleSubmit = async () => {
     console.log("Submitting", selections);
     setPosting(true);
@@ -116,6 +126,9 @@ const SurveyViewer: FunctionComponent<Props> = ({
         );
       }
       setPosted(!result.isError);
+
+      const generatedQR = await generateQR(window.location.href);
+      setQR(generatedQR);
     } else {
       console.log("Validation failed");
     }
@@ -139,21 +152,26 @@ const SurveyViewer: FunctionComponent<Props> = ({
   return (
     <>
       {posted ? (
-        <Result
-          status="success"
-          title={`Your response is recorded! Response id: ${responseSlug}`}
-          subTitle={`Please use the response id or click the button below to view / edit your response.`}
-          extra={[
-            <Button
-              type="primary"
-              key="console"
-              loading={redirecting}
-              onClick={() => setPosted(false)}
-            >
-              View my response
-            </Button>,
-          ]}
-        />
+        <>
+          <Result
+            status="success"
+            title={`Your response is recorded! Response id: ${responseSlug}`}
+            subTitle={`Please use the QR code or click the button below to view / edit your response.`}
+            extra={[
+              <Button
+                type="primary"
+                key="console"
+                loading={redirecting}
+                onClick={() => setPosted(false)}
+              >
+                View my response
+              </Button>,
+            ]}
+          ></Result>
+          <div>
+            <img src={qr} style={{ margin: "auto", display: "block" }}></img>
+          </div>
+        </>
       ) : loading ? (
         <div className={styles.spinContainer}>
           <Spin tip="Loading survey..."></Spin>
