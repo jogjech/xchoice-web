@@ -9,7 +9,7 @@ interface Props {
 
 const Head: FunctionComponent<Props> = ({ title, children }) => (
   <>
-    <GoogleFonts href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@300;400&display=swap" />
+    <GoogleFonts href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Fredoka+One&family=Merriweather:wght@300;400&display=swap" />
     <NextHead>
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />

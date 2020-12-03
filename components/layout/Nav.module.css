@@ -1,10 +1,30 @@
 .logo {
   float: left;
   margin-right: 1rem;
-  color: white;
   cursor: pointer;
+  display: block;
+  padding-right: 3rem;
+  display: flex;
+  line-height: 50px;
+  padding-top: 7px;
+}
+
+.logoImg {
+  vertical-align: middle;
+}
+
+.logoText {
+  font-family: "Fredoka One", cursive;
+  color: #fbe26e;
+  font-size: 2rem;
+  padding-left: 0.5rem;
 }
 
 .loginButton {
   display: inline-block;
+}
+
+.drawerItem {
+  font-size: 1.1rem;
+  padding-top: 0.6rem;
 }
