@@ -50,6 +50,15 @@ For priority,
 | `/profile`  | Page to manage user settings. | P1 |
 | `/explorer`  | Page to explore random active surveys. User can pick a few to take. | P2 |
 
+## Architecture Overview
+![](designs/flow_chart.png)
+The page is hosted on Vercel as static media, and we use Auth0 for authentication. XChoice Service is our backend Spring Boot service hosted on Heroku.
+
+Here's the explaination for each steps:
+1. Customer makes a call to out endpoint xchoice.vercel.app which sends a request to Vercel. Vercel will return the static files to the browser.
+2. Based on the page requirement, customer will be redirected to Auth0 page to login. This is because our UI has no server to make the request. After logging in, customer will be redirected back to the previous page.
+3. The page sends different requests to our backend from customer's browser. For private endpoints which needs authentication, UI will send a JWT (Json Web Token) which can be validated by the backend server. We also made the configuration on Auth0 to pass user email within the token, which will be used to identify the customer.
+4. Backend server calls MySQL DB for persistence.
 
 ## Prod deployment
 
