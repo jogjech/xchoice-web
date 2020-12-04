@@ -77,8 +77,6 @@ const postSurvey = async (
     }),
   };
 
-  console.log(request);
-
   try {
     const { data } = await axios.post(
       `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys`,
@@ -116,8 +114,6 @@ const postSurveyResponse = async (
       surveyResponse.selections
     );
 
-    console.log(data);
-
     return {
       isError: false,
       slug: data,
@@ -143,8 +139,6 @@ const getSurveyResponse = async (
       `${process.env.NEXT_PUBLIC_X_CHOICE_API}/surveys/responses`,
       { params: { slug: slug } }
     );
-
-    console.log(data);
 
     return {
       isError: false,
@@ -180,8 +174,6 @@ const getSurvey = async (
         }),
       }
     );
-
-    console.log(data);
 
     return {
       isError: false,
@@ -225,8 +217,6 @@ const getSurveyReport = async (
         },
       }
     );
-
-    console.log(data);
 
     return {
       isError: false,
@@ -279,8 +269,6 @@ const updateSurveyStatus = async (
       }
     );
 
-    console.log(data);
-
     return {
       isError: false,
     };
@@ -307,8 +295,6 @@ const findSurveys = async (accessToken: string): Promise<FindSurveysResult> => {
         },
       }
     );
-
-    console.log(data);
 
     return {
       isError: false,

@@ -9,7 +9,6 @@ interface PutUserResult {
 
 const putUser = async (accessToken: string): Promise<PutUserResult> => {
   try {
-    console.log("putUser token", accessToken);
     const { data } = await axios.post(
       `${process.env.NEXT_PUBLIC_X_CHOICE_API}/users`,
       {},
@@ -19,8 +18,6 @@ const putUser = async (accessToken: string): Promise<PutUserResult> => {
         },
       }
     );
-
-    console.log(data);
 
     return {
       isError: false,

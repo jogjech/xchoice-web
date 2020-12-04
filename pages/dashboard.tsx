@@ -31,7 +31,6 @@ const Dashboard: FunctionComponent<Props> = () => {
       if (result.isError) {
         setErrorMessage(result.error.message);
       } else {
-        console.log(result);
         setSurveyMetatdataList(result.surveyMetadataList);
       }
       setLoading(false);

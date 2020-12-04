@@ -77,7 +77,6 @@ const ManageSurveyPage: FunctionComponent<Props> = () => {
       setDeleting(true);
     }
     const accessToken = await getAccessTokenSilently();
-    console.log(router);
     const result = await updateSurveyStatus(
       surveyId,
       targetStatus,

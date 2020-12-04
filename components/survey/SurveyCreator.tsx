@@ -29,7 +29,6 @@ const SurveyCreator: FunctionComponent<Props> = () => {
       }
     ];
   }) => {
-    console.log(formData);
     setPosting(true);
     setPostError(undefined);
 

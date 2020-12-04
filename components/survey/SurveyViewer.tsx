@@ -86,7 +86,6 @@ const SurveyViewer: FunctionComponent<Props> = ({
   const handleSelectionChange = (questionIndex: number) => (
     newValue: number
   ) => {
-    console.log(`Question ${questionIndex} received new value ${newValue}`);
     setValidated(false);
     setSelections((prevSelections) => {
       const newSelections = [...prevSelections];
@@ -104,13 +103,11 @@ const SurveyViewer: FunctionComponent<Props> = ({
   };
 
   const handleSubmit = async () => {
-    console.log("Submitting", selections);
     setPosting(true);
     setPostError(undefined);
 
     const validationPassed = validateSelections();
     if (validationPassed) {
-      console.log("Validation passed");
       const result = await postSurveyResponse({
         surveyId: surveyId,
         selections: selections,
@@ -129,8 +126,6 @@ const SurveyViewer: FunctionComponent<Props> = ({
 
       const generatedQR = await generateQR(window.location.href);
       setQR(generatedQR);
-    } else {
-      console.log("Validation failed");
     }
     setPosting(false);
   };
